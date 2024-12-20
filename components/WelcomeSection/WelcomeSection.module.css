@@ -1,0 +1,77 @@
+.welcomeSection {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.welcomeSection__left {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/background-logo.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: -50px center;
+  padding-left: 50px;
+}
+
+.welcomeSection__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.welcomeSection__content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  color: white;
+}
+
+.welcomeSection__title {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.welcomeSection__subtitle {
+  font-size: 24px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.welcomeSection__divider {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  margin: 20px auto;
+}
+
+.welcomeSection__description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #464646;
+}
+
+.welcomeSection__right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.welcomeSection__lightEffect {
+  width: 120px;
+  height: 220px;
+  background-color: rgba(217, 217, 217);
+  position: relative;
+  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  filter: blur(2px);
+}

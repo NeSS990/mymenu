@@ -1,0 +1,18 @@
+.footer {
+    background-color: #2D2D2D;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    font-size: 14px;
+    height: 5rem;
+  }
+  
+  .footer__left {
+    font-weight: 400;
+  }
+  
+  .footer__right {
+    font-weight: 400;
+  }

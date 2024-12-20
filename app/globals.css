@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #1B1B1B;
+  --foreground: #565656;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  @apply text-base leading-relaxed text-center;
+}
+
+h1 {
+  font-family: 'Philosopher', Arial, Helvetica, sans-serif;
+  @apply text-4xl font-bold mb-20;
+}
+
+h2 {
+  @apply text-2xl font-bold mb-2;
+}
+
+p {
+  @apply text-lg mb-6;
+}
+

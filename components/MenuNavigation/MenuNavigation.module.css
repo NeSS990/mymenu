@@ -1,0 +1,22 @@
+.menuNavigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #303030;
+    padding: 10px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  
+  .menuNavigation__link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .menuNavigation__link:hover {
+    color: #dda15e;
+  }
