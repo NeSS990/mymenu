@@ -48,3 +48,55 @@
 .faq__item:last-child {
   border-bottom: 1px solid #000;
 }
+
+@media (max-width: 768px) {
+  .faq {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .faq__title {
+    font-size: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq__question {
+    font-size: 16px;
+  }
+
+  .faq__icon {
+    font-size: 24px;
+  }
+
+  .faq__answer {
+    margin: 0 1rem 1rem 1rem;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .faq {
+    width: 70%;
+    margin: 0 auto 0 6rem;
+    padding: 15px;
+  }
+
+  .faq__title {
+    font-size: 22px;
+    margin-bottom: 2rem;
+  }
+
+  .faq__question {
+    font-size: 17px;
+  }
+
+  .faq__icon {
+    font-size: 26px;
+  }
+
+  .faq__answer {
+    margin: 0 2rem 1rem 2rem;
+    font-size: 15px;
+  }
+}
