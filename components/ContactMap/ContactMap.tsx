@@ -28,8 +28,7 @@ const ContactMap = () => {
     } as any);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     (L.control as any).fullscreen({ position: 'topleft' }).addTo(map);
@@ -44,7 +43,12 @@ const ContactMap = () => {
 
   return (
     <div className={styles.contactMap}>
+      <div className={styles.contactMap__garland}>
+        <img src="/garland.png" alt="Garland" className={styles.contactMap__garlandImage} />
+      </div>
+
       <div className={styles.contactMap__background} />
+
       <div className={styles.contactMap__content}>
         <div className={styles.contactMap__left}>
           <h2 className={styles.contactMap__title}>Наши контакты</h2>
