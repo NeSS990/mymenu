@@ -1,4 +1,4 @@
-import '@/app/globals.css';
+import '@/app/globals.css'; // Подключаем глобальные стили
 import Navbar from '@/components/Navbar/Navbar';
 import Script from 'next/script';
 import Footer from '@/components/Footer/Footer';
@@ -12,10 +12,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {/* Подключаем Google Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Philosopher:wght@400;700&display=swap"
           rel="stylesheet"
         />
+
+        {/* Подключаем локальный файл fonts.css */}
+        <link rel="stylesheet" href="/styles/fonts.css" />
       </head>
       <body className="bg-background text-foreground min-h-screen flex flex-col">
         <div className="layout flex flex-col min-h-screen">
