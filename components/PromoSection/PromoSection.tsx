@@ -13,6 +13,9 @@ const PromoSection: React.FC<PromoSectionProps> = ({ title, data }) => {
 
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<{ name: string; color: string; price: number } | null>(null);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const currentPageItems = data.slice(
@@ -36,6 +39,31 @@ const PromoSection: React.FC<PromoSectionProps> = ({ title, data }) => {
     setIsExpanded(!isExpanded);
   };
 
+  const openModal = (item: { name: string; color: string; price: number }) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setIsModalOpen(false);
+  };
+
+  const handleQuantityChange = (action: 'increment' | 'decrement') => {
+    if (action === 'increment') {
+      setQuantity(quantity + 1);
+    } else if (action === 'decrement' && quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (selectedItem) {
+      alert(`Вы заказали ${quantity} ${selectedItem.name}`);
+      closeModal();
+    }
+  };
+
   return (
     <section className={styles.promoSection}>
       <h2 className={styles.promoSection__title}>{title}</h2>
@@ -54,7 +82,11 @@ const PromoSection: React.FC<PromoSectionProps> = ({ title, data }) => {
               )}
 
               {currentPageItems.map((item, index) => (
-                <div className={styles.promoSection__card} key={index}>
+                <div
+                  className={styles.promoSection__card}
+                  key={index}
+                  onClick={() => openModal(item)}
+                >
                   <div
                     className={styles.promoSection__cardBlur}
                     style={{ backgroundColor: item.color }}
@@ -83,19 +115,23 @@ const PromoSection: React.FC<PromoSectionProps> = ({ title, data }) => {
           {isExpanded && (
             <div className={styles.promoSection__gridWrapper}>
               {data.map((item, index) => (
-                <div className={styles.promoSection__card} key={index}>
                 <div
-                  className={styles.promoSection__cardBlur}
-                  style={{ backgroundColor: item.color }}
-                ></div>
-                <img
-                  src={`/dishes/${item.name.toLowerCase()}.png`}
-                  alt={item.name}
-                  className={styles.promoSection__cardImage}
-                />
-                <div className={styles.promoSection__cardTitle}>{item.name}</div>
-                <div className={styles.promoSection__cardPrice}>{item.price} ₽</div>
-              </div>
+                  className={styles.promoSection__card}
+                  key={index}
+                  onClick={() => openModal(item)}
+                >
+                  <div
+                    className={styles.promoSection__cardBlur}
+                    style={{ backgroundColor: item.color }}
+                  ></div>
+                  <img
+                    src={`/dishes/${item.name.toLowerCase()}.png`}
+                    alt={item.name}
+                    className={styles.promoSection__cardImage}
+                  />
+                  <div className={styles.promoSection__cardTitle}>{item.name}</div>
+                  <div className={styles.promoSection__cardPrice}>{item.price} ₽</div>
+                </div>
               ))}
             </div>
           )}
@@ -134,6 +170,53 @@ const PromoSection: React.FC<PromoSectionProps> = ({ title, data }) => {
           Свернуть
           <img src="/arrow-up.svg" alt="Развернуть" className="promoSection__icon" />
         </button>
+      )}
+
+      {isModalOpen && selectedItem && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.modal__closeButton} onClick={closeModal}>
+              <img src="/X.png" alt="Закрыть" />
+            </button>
+            <div className={styles.modal__left}>
+              <img
+                src={`/dishes/${selectedItem.name.toLowerCase()}.png`}
+                alt={selectedItem.name}
+                className={styles.modal__image}
+              />
+              <div
+                className={styles.modal__blur}
+                style={{ backgroundColor: selectedItem.color }}
+              ></div>
+            </div>
+            <div className={styles.modal__right}>
+              <h3 className={styles.modal__title}>{selectedItem.name}</h3>
+              <p className={styles.modal__description}>Описание</p>
+              <p className={styles.modal__ingredients}>
+                Ингредиенты: сахар, соль, вода, мука, яйца, масло
+              </p>
+              <div className={styles.modal__footer}>
+                <div className={styles.modal__price}>{selectedItem.price} ₽</div>
+                <div className={styles.modal__quantityWrapper}>
+                  <button
+                    className={styles.modal__quantityButton}
+                    onClick={() => handleQuantityChange('decrement')}
+                  >
+                    -
+                  </button>
+                  <div className={styles.modal__quantityValue}>{quantity}</div>
+                  <button
+                    className={styles.modal__quantityButton}
+                    onClick={() => handleQuantityChange('increment')}
+                  >
+                    +
+                  </button>
+                </div>
+                <button className={styles.modal__addButton} onClick={handleAddToCart}>Добавить</button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </section>
   );
